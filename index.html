@@ -1,0 +1,35 @@
+
+<html>
+    <head>
+        <title>Meta Github Pages</title>
+        <link rel="stylesheet" href="bootstrap.min.css">
+        <link rel="stylesheet" href="github_markdown.css">
+        <link rel="stylesheet" href="github_pygments.css">
+    </head>
+    <body class="markdown-body">
+        <div class="container">
+            <h1>Meta Github-Pages</h1>
+
+<p>Guide to using a GIT submodule for storing your github pages content for a project repository.</p>
+
+<h3>Steps</h3>
+
+<ol>
+<li>You are starting off with a repository that already contains content and has no <code>gh-pages</code> branch yet.</li>
+<li><p>Create the beginning of a new branch</p>
+
+<div class="codehilite"><pre><code><span class="nv">$ </span>git symbolic-ref HEAD refs/heads/gh-pages
+</code></pre></div></li>
+<li><p>Remove entire index</p>
+
+<div class="codehilite"><pre><code><span class="nv">$ </span>rm .git/index
+</code></pre></div></li>
+<li><p>Clean everything out</p>
+
+<div class="codehilite"><pre><code><span class="nv">$ </span>git clean -fdx
+</code></pre></div></li>
+</ol>
+
+        </div>
+    </body>
+</html>
