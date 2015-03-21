@@ -1,0 +1,4 @@
+[submodule "web_output"]
+	path = web_output
+	url = git@github.com:AstromechZA/meta_github_pages.git
+	branch = gh-pages
