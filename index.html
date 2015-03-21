@@ -8,14 +8,14 @@
     </head>
     <body class="markdown-body">
         <div class="container">
-            <h1>Meta Github-Pages</h1>
+            <h1><a href="http://github.com/AstromechZA/meta_github_pages">Meta Github-Pages</a></h1>
 
-<p>Guide to using a GIT submodule for storing your github pages content for a project repository.</p>
+<p>A guide to using a GIT submodule for storing your Github pages content for a project repository.</p>
 
 <h3>Steps</h3>
 
 <ol>
-<li>You are starting off with a repository that already contains content and has no <code>gh-pages</code> branch yet.</li>
+<li>You are starting off with a repository that might already contain content and has no <code>gh-pages</code> branch yet.</li>
 <li><p>Create the beginning of a new branch</p>
 
 <div class="codehilite"><pre><code><span class="nv">$ </span>git symbolic-ref HEAD refs/heads/gh-pages
@@ -26,9 +26,61 @@
 </code></pre></div></li>
 <li><p>Clean everything out</p>
 
-<div class="codehilite"><pre><code><span class="nv">$ </span>git clean -fdx
+<div class="codehilite"><pre><code><span class="nv">$ </span>git clean -dx --force
 </code></pre></div></li>
+<li><p>Add a blank index page (still in repository root folder)</p>
+
+<div class="codehilite"><pre><code><span class="nv">$ </span>touch index.html
+</code></pre></div></li>
+<li><p>Commit and push!</p>
+
+<div class="codehilite"><pre><code><span class="nv">$ </span>git add .
+<span class="nv">$ </span>git commit -m <span class="s2">&quot;Created blank index page&quot;</span>
+<span class="nv">$ </span>git push origin gh-pages
+</code></pre></div>
+
+<p>Now we have a branch for our web content pushed to Github.</p></li>
+<li><p>Switch back to master and link in the branch as a submodule</p>
+
+<div class="codehilite"><pre><code><span class="nv">$ </span>git checkout master
+<span class="nv">$ </span>git submodule add -b gh-pages git@github.com:&lt;username&gt;/&lt;repo name&gt;.git &lt;sub directory&gt;
+<span class="nv">$ </span>git commit -m <span class="s2">&quot;Linked Github pages submodule&quot;</span>
+<span class="nv">$ </span>git push -u origin master
+</code></pre></div>
+
+<p><strong>Note</strong>: the <code>&lt;sub directory&gt;</code> must not exist yet.</p></li>
 </ol>
+
+<p>Now the <code>gh-pages</code> branch is linked as a subdirectory in <code>master</code>. The workflow now
+for updating your web content is as follows:</p>
+
+<ol>
+<li><code>$ cd &lt;sub directory&gt;</code> (now you're on the gh-pages branch)</li>
+<li>Make your changes to the website</li>
+<li><code>$ git add .</code></li>
+<li><code>$ git commit -m "Moar web content"</code></li>
+<li><code>$ git push</code></li>
+<li><code>$ cd &lt;repository root&gt;</code> (now you're back on master)</li>
+</ol>
+
+<p><strong>Note</strong>: Step 3, 4, and 5 are still in the &lt;sub directory&gt;.</p>
+
+<p><strong>Note</strong>: You can skip step 5 and use <code>git push --recurse-submodules</code> when pushing in master.</p>
+
+<h3>What to do from here</h3>
+
+<p>This technique is great if you are generating your web content from your master branch via
+build scripts or if you simply want a better way of working without having to switch branches
+too often.</p>
+
+<p>This website uses a Python <code>make.py</code> script to compile the <code>README.md</code> Markdown file into the html of this
+document. Bootstrap and Github css is copied into the web folder to make it look a little prettier.</p>
+
+<p><a href="http://github.com/AstromechZA/meta_github_pages">Checkout the source code in the Github repository to see how this works!</a></p>
+
+<div class="codehilite"><pre><code><span class="nv">$ </span>pip install -r requirements.text
+<span class="nv">$ </span>python make.py
+</code></pre></div>
 
         </div>
     </body>
