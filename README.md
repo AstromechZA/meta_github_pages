@@ -1,5 +1,8 @@
-# [Meta Github-Pages](http://github.com/AstromechZA/meta_github_pages)
+# Meta Github-Pages
 A guide to using a GIT submodule for storing your Github pages content for a project repository.
+
+- Repository: [github.com/AstromechZA/meta_github_pages](http://github.com/AstromechZA/meta_github_pages)
+- Project Page: [astromechza.github.io/meta_github_pages](http://astromechza.github.io/meta_github_pages)
 
 ### Steps
 
